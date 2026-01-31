@@ -4,8 +4,6 @@ A premium, full-stack registration management system built with **Next.js 15**, 
 
 ---
 
-## 🚀 Quick Start (Easiest Way)
-
 ### 🐋 Option A: Docker (Automatic)
 The app and database are fully containerized.
 
@@ -18,12 +16,7 @@ The app and database are fully containerized.
    ```bash
    docker-compose up --build
    ```
-3. **Initialize Tables (One-time only)**:
-   While Docker is running, open a new terminal and run:
-   ```bash
-   docker exec -it histadrut-app npx prisma db push
-   ```
-   *The app is now live at [http://localhost:3000](http://localhost:3000)*
+   *The app will automatically wait for the database, sync the schema, and go live at [http://localhost:3000](http://localhost:3000)*
 
 ---
 
