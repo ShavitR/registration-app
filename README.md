@@ -39,9 +39,11 @@ npm install
 ```
 
 ### 3. Environment Configuration
-Create a `.env` file in the root directory and add the following:
+Copy the `.env.example` file to create your own `.env` file:
 
-```env
+```bash
+cp .env.example .env
+```
 # Database connection string
 DATABASE_URL="sqlserver://localhost:1433;database=histadrut;user=sa;password=YourPassword;encrypt=true;trustServerCertificate=true;"
 
