@@ -123,7 +123,7 @@ export async function POST(req: NextRequest) {
         for (const user of processedUsers) {
             try {
                 const { _excelRow, ...data } = user;
-                const created = await prisma.user.create({ data });
+                const created = await prisma.user.create({ data: data as any });
                 createdUsers.push(created);
             } catch (e: any) {
                 const { _excelRow, ...userData } = user;
