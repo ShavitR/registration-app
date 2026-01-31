@@ -1,0 +1,51 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlserver"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  idCard    String   @unique
+  firstName String
+  lastName  String
+  gender    String?
+  birthDate DateTime?
+  association String?
+  employer  String?
+  status    String?
+  branch    String?
+  joinDate  DateTime?
+  aliyahOrStudiesDate DateTime?
+  membershipType String?
+  exceptionReason String?
+  city      String?
+  street    String?
+  email     String?
+  mobilePhone String?
+  mailingApproval String?
+  approvalDate DateTime?
+  education String?
+  institution String?
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ActivityLog {
+  id        Int      @id @default(autoincrement())
+  action    String   // e.g., "UPLOAD", "UPDATE_USER", "DELETE_USER"
+  details   String   // Description of the action
+  entityId  String?  // Optional ID of the affected entity
+  admin     String?  // Admin username/email
+  createdAt DateTime @default(now())
+}
+
+model ValidationRule {
+  id           String   @id @default("config") // Singleton config
+  rulesJson    String   // JSON string of rules
+  updatedAt    DateTime @updatedAt
+}

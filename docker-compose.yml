@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pais-plus-app
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=sqlserver://db:1433;database=PaisPlus;user=sa;password=Ply!PlusUser2026;encrypt=true;trustServerCertificate=true
+    depends_on:
+      - db
+    restart: always
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: pais-plus-sql-compose
+    ports:
+      - "1433:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=Ply!PlusUser2026
+    volumes:
+      - sqlvolume:/var/opt/mssql
+    restart: always
+
+volumes:
+  sqlvolume:
