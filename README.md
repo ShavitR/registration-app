@@ -1,69 +1,43 @@
 # 📋 Registration Management System
 
-A premium, full-stack registration management system built with **Next.js 15**, **Prisma**, and **Microsoft SQL Server**. This application features a stunning RTL (Hebrew) interface with real-time analytics, advanced search capabilities, and robust data validation.
+A premium, full-stack registration management system built with **Next.js 15**, **Prisma**, and **Microsoft SQL Server**.
 
 ---
 
 ## 🚀 Quick Start (Easiest Way)
 
-The fastest way to get the app running is using **Docker Compose**. This will set up both the web application and the Microsoft SQL Server database automatically.
+### 🐋 Option A: Docker (Automatic)
+The app and database are fully containerized.
 
-1. **Clone the repository**:
+1. **Clone & Enter**:
    ```bash
    git clone https://github.com/ShavitR/registration-app.git
    cd registration-app
    ```
-
-2. **Run with Docker**:
+2. **Run**:
    ```bash
    docker-compose up --build
    ```
-
-3. **Access the app**:
-   Open [http://localhost:3000](http://localhost:3000) in your browser.
+3. **Initialize Tables (One-time only)**:
+   While Docker is running, open a new terminal and run:
+   ```bash
+   docker exec -it histadrut-app npx prisma db push
+   ```
+   *The app is now live at [http://localhost:3000](http://localhost:3000)*
 
 ---
 
-## 💻 Local Development Setup
+### 💻 Option B: Local Development (One Command)
+If you have MS SQL Server running locally:
 
-If you prefer to run the app locally without Docker, follow these steps:
-
-### 1. Prerequisites
-- **Node.js 20+**
-- **npm** or **yarn**
-- **MS SQL Server** instance running locally or remotely.
-
-### 2. Install Dependencies
-```bash
-npm install
-```
-
-### 3. Environment Configuration
-Copy the `.env.example` file to create your own `.env` file:
-
-```bash
-cp .env.example .env
-```
-# Database connection string
-DATABASE_URL="sqlserver://localhost:1433;database=histadrut;user=sa;password=YourPassword;encrypt=true;trustServerCertificate=true;"
-
-# Authentication (Next-Auth)
-AUTH_SECRET="your-random-generated-secret"
-AUTH_URL="http://localhost:3000"
-```
-
-### 4. Database Setup
-Push the Prisma schema to your database to create the necessary tables:
-
-```bash
-npx prisma db push
-```
-
-### 5. Run the App
-```bash
-npm run dev
-```
-The app will be available at [http://localhost:3000](http://localhost:3000).
+1. **Clone & Env**:
+   - Clone the repo.
+   - Copy `.env.example` to `.env` and update your `DATABASE_URL`.
+2. **One-Command Setup**:
+   ```bash
+   npm run setup
+   ```
+   *This single command installs dependencies, creates tables, and starts the development server.*
 
 ---
 
