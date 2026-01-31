@@ -22,7 +22,7 @@ services:
     container_name: histadrut-init
     environment:
       - DATABASE_URL=sqlserver://db:1433;database=histadrut;user=sa;password=Ply!PlusUser2026;encrypt=true;trustServerCertificate=true
-    command: [ "sh", "./docker-entrypoint.sh" ]
+    command: [ "sh", "./db-init.sh" ]
     depends_on:
       - db
 
