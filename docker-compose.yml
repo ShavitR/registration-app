@@ -11,8 +11,34 @@ services:
     environment:
       - DATABASE_URL=sqlserver://db:1433;database=histadrut;user=sa;password=Ply!PlusUser2026;encrypt=true;trustServerCertificate=true
     depends_on:
-      - db
+      db-init:
+        condition: service_completed_successfully
     restart: always
+
+  db-init:
+    build:
+      context: .
+      target: builder
+    container_name: histadrut-init
+    environment:
+      - DATABASE_URL=sqlserver://db:1433;database=histadrut;user=sa;password=Ply!PlusUser2026;encrypt=true;trustServerCertificate=true
+    command: >
+      sh -c '
+        echo "Waiting for SQL Server..." &&
+        until nc -z db 1433; do sleep 1; done &&
+        echo "SQL Server is up! Creating database if missing..." &&
+        npx prisma db execute --url "sqlserver://db:1433;user=sa;password=Ply!PlusUser2026;database=master;encrypt=true;trustServerCertificate=true" --stdin <<EOF
+        IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = "histadrut")
+        BEGIN
+          CREATE DATABASE histadrut;
+        END
+        EOF
+        echo "Synchronizing schema..." &&
+        npx prisma db push --accept-data-loss &&
+        echo "Database ready!"
+      '
+    depends_on:
+      - db
 
   db:
     image: mcr.microsoft.com/mssql/server:2022-latest
