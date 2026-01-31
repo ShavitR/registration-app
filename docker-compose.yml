@@ -5,18 +5,18 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: pais-plus-app
+    container_name: histadrut-app
     ports:
       - "3000:3000"
     environment:
-      - DATABASE_URL=sqlserver://db:1433;database=PaisPlus;user=sa;password=Ply!PlusUser2026;encrypt=true;trustServerCertificate=true
+      - DATABASE_URL=sqlserver://db:1433;database=histadrut;user=sa;password=Ply!PlusUser2026;encrypt=true;trustServerCertificate=true
     depends_on:
       - db
     restart: always
 
   db:
     image: mcr.microsoft.com/mssql/server:2022-latest
-    container_name: pais-plus-sql-compose
+    container_name: histadrut-sql
     ports:
       - "1433:1433"
     environment:

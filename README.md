@@ -43,7 +43,7 @@ Create a `.env` file in the root directory and add the following:
 
 ```env
 # Database connection string
-DATABASE_URL="sqlserver://localhost:1433;database=PaisPlusDB;user=sa;password=YourPassword;encrypt=true;trustServerCertificate=true;"
+DATABASE_URL="sqlserver://localhost:1433;database=histadrut;user=sa;password=YourPassword;encrypt=true;trustServerCertificate=true;"
 
 # Authentication (Next-Auth)
 AUTH_SECRET="your-random-generated-secret"
