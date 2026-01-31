@@ -24,7 +24,7 @@ wait_for_db
 
 # Create database if it doesn't exist
 echo "🔨 Ensuring database 'histadrut' exists..."
-npx prisma db execute --url "sqlserver://db:1433;user=sa;password=Ply!PlusUser2026;database=master;encrypt=true;trustServerCertificate=true" --stdin <<EOF
+./node_modules/.bin/prisma db execute --url "sqlserver://db:1433;user=sa;password=Ply!PlusUser2026;database=master;encrypt=true;trustServerCertificate=true" --stdin <<EOF
 IF NOT EXISTS (SELECT * FROM sys.databases WHERE name = 'histadrut')
 BEGIN
   CREATE DATABASE histadrut;
@@ -38,7 +38,7 @@ EOF
 
 # Run Prisma schema push
 echo "🚀 Synchronizing database schema..."
-npx prisma db push --accept-data-loss
+./node_modules/.bin/prisma db push --accept-data-loss
 
 echo "🎉 Database synchronization complete!"
 

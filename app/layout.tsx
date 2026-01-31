@@ -5,7 +5,7 @@ import "./globals.css";
 const outfit = Outfit({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Pais Plus | Registration",
+  title: "Histadrut | Registration",
   description: "Secure member registration portal",
 };
 
