@@ -1,36 +1,95 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📋 Registration Management System
 
-## Getting Started
+A premium, full-stack registration management system built with **Next.js 15**, **Prisma**, and **Microsoft SQL Server**. This application features a stunning RTL (Hebrew) interface with real-time analytics, advanced search capabilities, and robust data validation.
 
-First, run the development server:
+---
 
+## 🚀 Quick Start (Easiest Way)
+
+The fastest way to get the app running is using **Docker Compose**. This will set up both the web application and the Microsoft SQL Server database automatically.
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/ShavitR/registration-app.git
+   cd registration-app
+   ```
+
+2. **Run with Docker**:
+   ```bash
+   docker-compose up --build
+   ```
+
+3. **Access the app**:
+   Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+---
+
+## 💻 Local Development Setup
+
+If you prefer to run the app locally without Docker, follow these steps:
+
+### 1. Prerequisites
+- **Node.js 20+**
+- **npm** or **yarn**
+- **MS SQL Server** instance running locally or remotely.
+
+### 2. Install Dependencies
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 3. Environment Configuration
+Create a `.env` file in the root directory and add the following:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```env
+# Database connection string
+DATABASE_URL="sqlserver://localhost:1433;database=PaisPlusDB;user=sa;password=YourPassword;encrypt=true;trustServerCertificate=true;"
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Authentication (Next-Auth)
+AUTH_SECRET="your-random-generated-secret"
+AUTH_URL="http://localhost:3000"
+```
 
-## Learn More
+### 4. Database Setup
+Push the Prisma schema to your database to create the necessary tables:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npx prisma db push
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 5. Run the App
+```bash
+npm run dev
+```
+The app will be available at [http://localhost:3000](http://localhost:3000).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## ✨ Key Features
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **📊 Advanced Analytics**: Real-time charts for registration trends, gender distribution, and membership types.
+- **🔍 Smart Search**: "Search by" functionality in both the member database and validation error tables.
+- **🇮🇱 Full RTL Support**: Beautifully crafted Hebrew interface with premium dark-glass aesthetics.
+- **🛠️ Validation Engine**: Integrated rules for verifying Excel uploads before they hit the database.
+- **🐳 Docker Ready**: Full containerization for easy deployment.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 📁 Project Structure
+
+- `/app`: Next.js App Router (Pages & APIs).
+- `/components`: Reusable UI components (shadcn/ui + custom).
+- `/lib`: Helper functions, validation logic, and database client.
+- `/prisma`: Database schema and migrations.
+- `/public`: Static assets.
+
+---
+
+## 🛠️ Built With
+
+- **Framework**: Next.js 15
+- **Database**: MS SQL Server (via Prisma)
+- **Styling**: Tailwind CSS
+- **Animations**: Framer Motion
+- **Charts**: Recharts
+- **Icons**: Lucide React
